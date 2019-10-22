@@ -1,0 +1,12 @@
+<div class="login-page">
+    <div class="form">
+        <form class="login-form" [formGroup]="formLogin" (submit)="OnLogin()">
+            <input type="text" formControlName="username" id="username"  placeholder="userjjname" [(ngModel)]="username" />
+            <div class="alert alert-danger" *ngIf="formLogin.get('username')?.errors?.required && formLogin.get('username')?.touched">Require</div>
+            <input type="password" formControlName="password" id="password"  placeholder="password" [(ngModel)]="password" />
+            <div class="alert alert-danger" *ngIf="formLogin.get('password')?.errors?.required && formLogin.get('password')?.touched">Require</div>
+            <button type="submit" >Submit</button>
+            <p class="message">Not registered? <a href="#">Create an account</a></p>
+        </form>
+    </div>
+</div>
