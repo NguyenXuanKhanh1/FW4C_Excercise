@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   loginForm: Login[] = [];
   formLogin: any;
 
-  constructor(private router: Router, private form: FormBuilder) {
+  constructor(private router: Router, private form: FormBuilder, private service: LoginService) {
     this.formLogin = this.form.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -39,30 +39,19 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   OnLogin() {
-    const login = new Login();
+    const login = new Login(this.formLogin.value.username, this.formLogin.value.password);
     login.username = this.formLogin.value.username;
     login.password = this.formLogin.value.password;
     this.loginForm.push(login);
-    this.router.navigate(['main']).then(() => {
-      this.user.emit({
-        username: this.username,
-        password: this.password
-      });
-    });
-  }
-  // Validate when user input right username and password
-  /*
-  OnLogin(event: boolean) {
-    const login = new Login();
-    login.username = this.formLogin.value.username;
-    login.password = this.formLogin.value.password;
-    this.loginForm.push(login);
-    if (event === true) {
+    if (this.service.checkLogin(login) === true) {
       this.router.navigate(['main']).then(() => {
-        this.user.emit({username: this.username, password: this.password});
-        // console.log(this.user.emit({username: this.username, password: this.password, router: this.router}));
+        this.user.emit({
+          username: this.username,
+          password: this.password
+        });
       });
+    } else {
+      alert('Check your username or password');
     }
   }
-  */
 }
