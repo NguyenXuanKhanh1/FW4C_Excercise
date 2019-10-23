@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     this.loginForm.push(login);
     if (this.service.checkLogin(login) === true) {
       this.user.emit({ username: login.username, password: login.password });
-      this.router.navigate(['main']);
+      this.router.navigate(['main'], {state: {data: login.username}});
     } else {
       alert('Check your username or password');
     }
