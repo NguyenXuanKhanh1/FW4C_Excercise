@@ -9,9 +9,12 @@ import { Login } from '../login/login.model';
 })
 export class MainComponent implements OnInit {
   constructor() {}
-
-  ngOnInit() {}
-  displayCounter(login: Login) {
-    console.log('where are you now? ', login.username + ' ' + login.password);
+  userInfo = Login;
+  ngOnInit() {
+    this.userInfo = window.history.state.data;
+    console.log(this.userInfo);
   }
+  // displayCounter(login: Login) {
+  //   console.log('where are you now? ', login.username + ' ' + login.password);
+  // }
 }
