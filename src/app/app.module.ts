@@ -8,16 +8,14 @@ import { MainComponent } from './main/main.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from './login/login.service';
-import { ValidatorComponent } from './validator/validator.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, MainComponent, routingComponents, ValidatorComponent],
+  declarations: [AppComponent, LoginComponent, MainComponent, routingComponents],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    // RouterModule.forRoot([{ path: 'main', component: MainComponent }])
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

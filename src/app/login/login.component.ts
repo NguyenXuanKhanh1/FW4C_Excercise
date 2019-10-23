@@ -19,17 +19,15 @@ import { LoginService } from './login.service';
 export class LoginComponent implements OnInit {
   @Input() username = '';
   @Input() password = '';
-  @Output() user = new EventEmitter<{
-    username: string;
-    password: string;
-  }>();
-
-  correctUsername: 'nxkhanh';
-  correctPassword: '123@123a';
+  @Output() user = new EventEmitter<{ username: string; password: string }>();
   loginForm: Login[] = [];
   formLogin: any;
 
-  constructor(private router: Router, private form: FormBuilder, private service: LoginService) {
+  constructor(
+    private router: Router,
+    private form: FormBuilder,
+    private service: LoginService
+  ) {
     this.formLogin = this.form.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -39,17 +37,16 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   OnLogin() {
-    const login = new Login(this.formLogin.value.username, this.formLogin.value.password);
+    const login = new Login(
+      this.formLogin.value.username,
+      this.formLogin.value.password
+    );
     login.username = this.formLogin.value.username;
     login.password = this.formLogin.value.password;
     this.loginForm.push(login);
     if (this.service.checkLogin(login) === true) {
-      this.router.navigate(['main']).then(() => {
-        this.user.emit({
-          username: this.username,
-          password: this.password
-        });
-      });
+      this.user.emit({ username: login.username, password: login.password });
+      this.router.navigate(['main']);
     } else {
       alert('Check your username or password');
     }

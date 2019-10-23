@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
+import { Login } from '../login/login.model';
 
 @Component({
   selector: 'app-main',
@@ -7,10 +8,10 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit() {}
+  displayCounter(login: Login) {
+    console.log('where are you now? ', login.username + ' ' + login.password);
   }
-
 }

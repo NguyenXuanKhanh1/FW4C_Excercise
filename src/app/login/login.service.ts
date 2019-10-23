@@ -8,7 +8,7 @@ export class LoginService {
   constructor() { }
   correctUserName = 'nxkhanh';
   correctPassword = '123@123a';
-  static passwordValidator(login: Login) {
+  passwordValidator(login: Login) {
     if (login.password.match(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,100}$/)) {
       return null;
     } else {
