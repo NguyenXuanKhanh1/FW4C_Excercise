@@ -6,7 +6,8 @@ import { Login } from './login.model';
 })
 export class LoginService {
   constructor() { }
-
+  correctUserName = 'nxkhanh';
+  correctPassword = '123@123a';
   static passwordValidator(login: Login) {
     if (login.password.match(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,100}$/)) {
       return null;
@@ -15,6 +16,6 @@ export class LoginService {
     }
   }
   checkLogin(login: Login) {
-    return (login.username === 'nxkhanh' && login.password === '123@123a');
+    return (login.username === this.correctUserName && login.password === this.correctPassword);
   }
 }
